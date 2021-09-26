@@ -16,11 +16,12 @@ const UseRef = (props) => {
     }, [value1])
 
     useEffect(() => {
+        count.current ++
         myInput1.current.focus()
     }, [value2])
 
     const merge = (s1, s2) => {
-        return s1 + s2
+        return [...s1].map((e, i) => `${e}${s2[i] || ''}`).join('')
     }
 
     return (
