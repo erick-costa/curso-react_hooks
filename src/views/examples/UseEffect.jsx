@@ -10,9 +10,21 @@ function calcFatorial(num) {
     return calcFatorial(n - 1) * n
 }
 
+function calcStatus(num) {
+    const n = parseInt(num)
+
+    if (n % 2 === 0) {
+        return 'Par'
+    } else {
+        return 'Ímpar'
+    }
+}
+
 const UseEffect = (props) => {
     const [number, setNumber] = useState(1)
     const [fatorial, setFatorial] = useState(1)
+    const [status, setStatus] = useState('par')
+    const [num, setNum] = useState(0)
 
     useEffect(() => {
         setFatorial(calcFatorial(number))
@@ -23,6 +35,10 @@ const UseEffect = (props) => {
             document.title = 'Mais de 1M!'
         }   
     }, [fatorial])
+
+    useEffect(() => {
+        setStatus(calcStatus(num))
+    }, [num])
 
     //setFatorial(calcFatorial(number))
 
@@ -42,7 +58,11 @@ const UseEffect = (props) => {
             </div>
             <SectionTitle title='Exercício #02'/>
             <div className="center">
-                
+                <div>
+                    <span className="text">Status: </span>
+                    <span className="text red">{status}</span>
+                </div>
+                <input type="number" className="input" value={num} onChange={e => setNum(e.target.value)} />
             </div>
         </div>
     )
